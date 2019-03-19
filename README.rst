@@ -24,7 +24,7 @@ This is easily achieved by downloading
 Usage Example
 =============
 
-see `example <https://github.com/barbudor/CircuitPythonINA3221/blob/master/examples/ina3221simpletest.py>`
+see `example <https://github.com/barbudor/CircuitPythonINA3221/blob/master/examples/ina3221simpletest.py>`_.
 
 Contributing
 ============

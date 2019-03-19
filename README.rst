@@ -5,6 +5,10 @@ Introduction
 CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
 Product page : http://www.ti.com/product/INA3221
 
+2 version are available:
+- normal/full		includes all constants for low-level register access + API for alarms
+- lite				only basic API and no constants - use less memory
+
 Dependencies
 =============
 This driver depends on:

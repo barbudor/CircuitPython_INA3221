@@ -1,8 +1,9 @@
 ### Memory test for barbudor_ina3221 ###
 # Copy below sequence into
+# pylint: disable=unnecessary-semicolon,multiple-statements,wrong-import-position,no-member
 
-import board
 import gc
+import board
 
 i2c_bus = board.I2C()
 
@@ -12,9 +13,9 @@ from barbudor_ina3221 import INA3221
 
 gc.collect(); gc.collect(); gc.collect(); after = gc.mem_free();
 
-ina3221 =  INA3221(i2c_bus)
+ina3221 = INA3221(i2c_bus)
 
 gc.collect(); gc.collect(); gc.collect(); instance = gc.mem_free();
 
-print( "Import used    : %d bytes" % (before - after))
-print( "Instance used  : %d bytes" % (after - instance))
+print("Import used    : %d bytes" % (before - after))
+print("Instance used  : %d bytes" % (after - instance))

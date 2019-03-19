@@ -2,7 +2,6 @@
 
 import time
 import board
-import gc
 from barbudor_ina3221 import INA3221
 
 # To enable relay on pin A1 to switch-on the test-load
@@ -11,7 +10,7 @@ from barbudor_ina3221 import INA3221
 #pin.switch_to_output()
 
 i2c_bus = board.I2C()
-ina3221 =  INA3221(i2c_bus)
+ina3221 = INA3221(i2c_bus)
 
 ina3221.enable_channel(1)
 
@@ -19,7 +18,7 @@ while True:
 
     print("------------------------------")
     for chan in (1, 2, 3):
-        if ina3221.isChannelEnabled(chan):
+        if ina3221.is_channel_enabled(chan):
             print("Channel %d" % chan)
             bus_voltage = ina3221.bus_voltage(chan)
             shunt_voltage = ina3221.shunt_voltage(chan)

@@ -2,28 +2,28 @@
 Introduction
 ============
 
-CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor._
-Product page : http://www.ti.com/product/INA3221_
+CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
+Product page : http://www.ti.com/product/INA3221
 
-2 version are available:_
-- normal/full		includes all constants for low-level register access + API for alarms_
-- lite				only basic API and no constants - use less memory_
+2 version are available:
+* normal/full		includes all constants for low-level register access + API for alarms
+* lite				only basic API and no constants - use less memory
 
 Dependencies
 =============
 This driver depends on:
 
-* `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
-* `Bus Device <https://github.com/adafruit/Adafruit_CircuitPython_BusDevice>`_
+* `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`
+* `Bus Device <https://github.com/adafruit/AdafruitCircuitPythonBusDevice>`
 
-Please ensure all dependencies are available on the CircuitPython filesystem._
+Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
-`the Adafruit library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`.
+`the Adafruit library and driver bundle <https://github.com/adafruit/AdafruitCircuitPythonBundle>`.
 
 Usage Example
 =============
 
-see `example <https://github.com/barbudor/CircuitPython_INA3221/blob/master/examples/ina3221_simpletest.py>`
+see `example <https://github.com/barbudor/CircuitPythonINA3221/blob/master/examples/ina3221simpletest.py>`
 
 Contributing
 ============

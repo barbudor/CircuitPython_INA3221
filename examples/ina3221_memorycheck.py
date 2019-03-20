@@ -1,4 +1,4 @@
-### Memory test for barbudor_ina3221 ###
+"""Memory test for barbudor_ina3221"""
 # Copy below sequence into
 # pylint: disable=unnecessary-semicolon,multiple-statements,wrong-import-position,no-member
 

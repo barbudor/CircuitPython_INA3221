@@ -10,3 +10,7 @@ bundles
 .eggs
 dist
 **/*.egg-info
+*.bak
+*.pyproj
+*.sln
+*.suo

@@ -261,11 +261,8 @@ class INA3221:
         # convert to volts - LSB = 40uV
         return value * 0.00004
 
-    # why do I need this ???
-    # pylint: disable=too-many-function-args
     def set_shunt_warning_alert_limit(self, channel, voltage):
         """Sets the channel's shunt voltage warning alert limit in Volts"""
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_unsigned(round(voltage * 0.00004) * 8)
-        self.read(C_REG_WARNING_ALERT_LIMIT_CH1 + channel-1, value)
-    # pylint: enable=too-many-function-args
+        self.write(C_REG_WARNING_ALERT_LIMIT_CH1 + channel-1, value)

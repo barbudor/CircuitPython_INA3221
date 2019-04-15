@@ -27,16 +27,16 @@ Dependencies
 This driver depends on:
 
 * `Adafruit CircuitPython <https://github.com/adafruit/circuitpython>`_
-* `Bus Device <https://github.com/adafruit/AdafruitCircuitPythonBusDevice>`_
+* `Bus Device <https://github.com/adafruit/Adafruit_CircuitPython_BusDevice>`_
 
 Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
-`the Adafruit library and driver bundle <https://github.com/adafruit/AdafruitCircuitPythonBundle>`_.
+`the Adafruit library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`_.
 
 Usage Example
 =============
 
-see `example <https://github.com/barbudor/CircuitPythonINA3221/blob/master/examples/ina3221simpletest.py>`_.
+see `example <https://github.com/barbudor/CircuitPython_INA3221/blob/master/examples/ina3221_simpletest.py>`_.
 
 Contributing
 ============

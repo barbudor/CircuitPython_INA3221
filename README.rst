@@ -2,8 +2,20 @@
 Introduction
 ============
 
-CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
-`Product page <http://www.ti.com/product/INA3221>`_.
+.. image:: https://readthedocs.org/projects/circuitpython-ina3221/badge/?version=latest
+    :target: https://circuitpython-ina3221.readthedocs.io/en/latest/
+    :alt: Documentation Status
+
+.. image :: https://img.shields.io/discord/327254708534116352.svg
+    :target: https://discord.gg/nBQh6qu
+    :alt: Discord
+
+.. image:: https://travis-ci.com/barbudor/CircuitPython_INA3221.svg?branch=master
+    :target: https://travis-ci.com/barbudor/CircuitPython_INA3221
+    :alt: Build Status
+
+CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor._
+Product page at `ti.com <http://www.ti.com/product/INA3221>`_.
 
 2 version are available:
 

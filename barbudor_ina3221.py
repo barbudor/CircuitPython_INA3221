@@ -58,6 +58,8 @@ Memory usage (tested with CircuitPython 4.0.0beta5 on CircuitPlayground Express)
 from micropython import const
 from adafruit_bus_device.i2c_device import I2CDevice
 
+__version__ = "0.0.0-auto.0"
+__repo__ = "https://github.com/barbudor/CircuitPython_INA3221"
 
 # pylint: disable=bad-whitespace
 

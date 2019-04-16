@@ -31,10 +31,11 @@ Implementation Notes
 --------------------
 
 **Important Note**
-In order to be coherent with the datasheet, the channel index in the below API start at 1. 
+In order to be coherent with the datasheet, the channel index in the below API start at 1.
 Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. **Do not use** ``0``
 
 Memory usage (tested with CircuitPython 4.0.0beta5 on CircuitPlayground Express):
+
 * from barbudor_ina3221 import INA3221        --> 4560 bytes
 * ina3221 = INA3221(i2c_bus)                  -->  112 bytes
 

@@ -50,6 +50,7 @@ Memory usage (tested with CircuitPython 4.0.0beta5 on CircuitPlayground Express)
 * Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 """
 
+# imports
 from micropython import const
 from adafruit_bus_device.i2c_device import I2CDevice
 

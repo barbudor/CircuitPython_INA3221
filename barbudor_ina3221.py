@@ -24,30 +24,24 @@
 ====================================================
 
 CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
-Product page : http://www.ti.com/product/INA3221
 
-* Author : Barbudor (IRL Jean-Michel Mercier)
+* Author : Barbudor (Jean-Michel Mercier)
 
 Implementation Notes
 --------------------
 
-**Important Note**
-In order to be coherent with the datasheet, the channel index in the below interface is 1-based
-Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. __Do_not_use_``0``__
+**Important Note:**
+In order to be coherent with the datasheet, the channel index in the below API start at 1. 
+Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. **Do not use** ``0``
 
 Memory usage (tested with CircuitPython 4.0.0beta5 on CircuitPlayground Express):
-    from barbudor_ina3221 import INA3221        --> 6592 bytes
-    ina3221 = INA3221(i2c_bus)                  -->  112 bytes
+* from barbudor_ina3221 import INA3221        --> 6592 bytes
+* ina3221 = INA3221(i2c_bus)                  -->  112 bytes
 
 **Hardware:**
 
-* `INA3221 Triple, Low-/High-Side, I2C Out Current/Voltage Monitor :
-    <http://www.ti.com/product/INA3221>`_
-
-* Available breakouts :
-- `SwitchDoc Labs :
-    <https://shop.switchdoc.com/collections/sensors/products/ina3221-breakout-board-3-channel-current-voltage-monitor-grove-headers-compare-to-ina219-grove-headers>`_
-- Generic chinese INA3221 breakout available on eBay or AliExpress
+* INA3221 Triple, Low-/High-Side, I2C Out Current/Voltage Monitor. Product page at `TI.com
+<http://www.ti.com/product/INA3221>`_
 
 **Software and Dependencies:**
 
@@ -212,7 +206,7 @@ class INA3221:
                                   C_MODE_SHUNT_AND_BUS_CONTINOUS )
 
     def is_channel_enabled(self, channel=1):
-        """Returns is agiven channel is enabled or not"""
+        """Returns if a given channel is enabled or not"""
         bit = C_ENABLE_CH1 >> (channel-1)
         return self.read(C_REG_CONFIG) & bit != 0
 
@@ -232,7 +226,7 @@ class INA3221:
         return value * 0.00004
 
     def current(self, channel=1):
-        """Return's the channel current in A"""
+        """Return's the channel current in Amps"""
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         return self.shunt_voltage(channel) / self.shunt_resistor[channel-1]
 

@@ -24,30 +24,24 @@
 ====================================================
 
 CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
-Product page : http://www.ti.com/product/INA3221
 
-* Author : Barbudor (IRL Jean-Michel Mercier)
+* Author : Barbudor (Jean-Michel Mercier)
 
 Implementation Notes
 --------------------
 
 **Important Note**
-In order to be coherent with the datasheet, the channel index in the below interface is 1-based
-Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. __Do_not_use_``0``__
+In order to be coherent with the datasheet, the channel index in the below API start at 1. 
+Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. **Do not use** ``0``
 
 Memory usage (tested with CircuitPython 4.0.0beta5 on CircuitPlayground Express):
-    from barbudor_ina3221 import INA3221        --> 4560 bytes
-    ina3221 = INA3221(i2c_bus)                  -->  112 bytes
+* from barbudor_ina3221 import INA3221        --> 4560 bytes
+* ina3221 = INA3221(i2c_bus)                  -->  112 bytes
 
 **Hardware:**
 
-* `INA3221 Triple, Low-/High-Side, I2C Out Current/Voltage Monitor :
-    <http://www.ti.com/product/INA3221>`_
-
-* Available breakouts :
-- `SwitchDoc Labs :
-    <https://shop.switchdoc.com/collections/sensors/products/ina3221-breakout-board-3-channel-current-voltage-monitor-grove-headers-compare-to-ina219-grove-headers>`_
-- Generic chinese INA3221 breakout available on eBay or AliExpress
+* INA3221 Triple, Low-/High-Side, I2C Out Current/Voltage Monitor. Product page at `TI.com
+<http://www.ti.com/product/INA3221>`_
 
 **Software and Dependencies:**
 
@@ -201,9 +195,9 @@ class INA3221:
         self.write(reg, regvalue | value)
 
 
-    def __init__(self, i2_bus, i2_addr = _DEFAULT_ADDRESS, shunt_resistor = (0.1, 0.1, 0.1)):
-        self.i2c_device = I2CDevice(i2_bus, i2_addr)
-        self.i2_addr = i2_addr
+    def __init__(self, i2c_bus, i2c_addr = _DEFAULT_ADDRESS, shunt_resistor = (0.1, 0.1, 0.1)):
+        self.i2c_device = I2CDevice(i2c_bus, i2c_addr)
+        self.i2c_addr = i2c_addr
         self.shunt_resistor = shunt_resistor
 
         self.write(_REG_CONFIG,  _AVERAGING_16_SAMPLES | \
@@ -212,7 +206,7 @@ class INA3221:
                                   _MODE_SHUNT_AND_BUS_CONTINOUS )
 
     def is_channel_enabled(self, channel=1):
-        """Returns is agiven channel is enabled or not"""
+        """Returns if a given channel is enabled or not"""
         bit = _ENABLE_CH1 >> (channel-1)
         return self.read(_REG_CONFIG) & bit != 0
 
@@ -232,7 +226,7 @@ class INA3221:
         return value * 0.00004
 
     def current(self, channel=1):
-        """Return's the channel current in A"""
+        """Return's the channel current in Amps"""
         #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         return self.shunt_voltage(channel) / self.shunt_resistor[channel-1]
 

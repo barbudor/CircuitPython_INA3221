@@ -34,9 +34,9 @@ Implementation Notes
 In order to be coherent with the datasheet, the channel index in the below API start at 1.
 Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. **Do not use** ``0``
 
-Memory usage (tested with CircuitPython 4.0.0beta5 on CircuitPlayground Express):
+Memory usage (tested with CircuitPython 4.0.0-rc.1 on CircuitPlayground Express):
 
-* from barbudor_ina3221 import INA3221        --> 4560 bytes
+* from barbudor_ina3221 import INA3221        --> 4080 bytes
 * ina3221 = INA3221(i2c_bus)                  -->  112 bytes
 
 **Hardware:**
@@ -69,9 +69,7 @@ _DEFAULT_ADDRESS                 = const(0x40)
 _REG_CONFIG                      = const(0x00)
 
 _RESET                           = const(0x8000)
-_ENABLE_CH1                      = const(0x4000)     # default set
-_ENABLE_CH2                      = const(0x2000)     # default set
-_ENABLE_CH3                      = const(0x1000)     # default set
+_ENABLE_CH                       = (None,const(0x4000),const(0x2000),const(0x1000)) # default set
 
 _AVERAGING_MASK                  = const(0x0E00)
 _AVERAGING_NONE                  = const(0x0000)     # 1 sample, default
@@ -114,35 +112,21 @@ _MODE_BUS_VOLTAGE_CONTINUOUS     = const(0x0006)     # Bus voltage, continuous
 _MODE_SHUNT_AND_BUS_CONTINOUS    = const(0x0007)     # Shunt and bus, continuous (default)
 
 # Other registers
-_REG_SHUNT_VOLTAGE_CH1           = const(0x01)
-_REG_BUS_VOLTAGE_CH1             = const(0x02)
-_REG_SHUNT_VOLTAGE_CH2           = const(0x03)
-_REG_BUS_VOLTAGE_CH2             = const(0x04)
-_REG_SHUNT_VOLTAGE_CH3           = const(0x05)
-_REG_BUS_VOLTAGE_CH3             = const(0x06)
-_REG_CRITICAL_ALERT_LIMIT_CH1    = const(0x07)
-_REG_WARNING_ALERT_LIMIT_CH1     = const(0x08)
-_REG_CRITICAL_ALERT_LIMIT_CH2    = const(0x09)
-_REG_WARNING_ALERT_LIMIT_CH2     = const(0x0A)
-_REG_CRITICAL_ALERT_LIMIT_CH3    = const(0x0B)
-_REG_WARNING_ALERT_LIMIT_CH3     = const(0x0C)
+_REG_SHUNT_VOLTAGE_CH            = (None, const(0x01), const(0x03), const(0x05))
+_REG_BUS_VOLTAGE_CH              = (None, const(0x02), const(0x04), const(0x06))
+_REG_CRITICAL_ALERT_LIMIT_CH     = (None, const(0x07), const(0x09), const(0x0B))
+_REG_WARNING_ALERT_LIMIT_CH      = (None, const(0x08), const(0x0A), const(0x0C))
 _REG_SHUNT_VOLTAGE_SUM           = const(0x0D)
 _REG_SHUNT_VOLTAGE_SUM_LIMIT     = const(0x0E)
 
 # Mask/enable register
 _REG_MASK_ENABLE                 = const(0x0F)
-_SUM_CONTROL_CH1                 = const(0x4000)     # default not set
-_SUM_CONTROL_CH2                 = const(0x2000)     # default not set
-_SUM_CONTROL_CH3                 = const(0x1000)     # default not set
+_SUM_CONTROL_CH                  = (None,const(0x4000),const(0x2000),const(0x1000)) #default not set
 _WARNING_LATCH_ENABLE            = const(0x0800)     # default not set
 _CRITICAL_LATCH_ENABLE           = const(0x0400)     # default not set
-_CRITICAL_FLAG_CH1               = const(0x0200)
-_CRITICAL_FLAG_CH2               = const(0x0100)
-_CRITICAL_FLAG_CH3               = const(0x0080)
+_CRITICAL_FLAG_CH                = (None,const(0x0200),const(0x0100),const(0x0080))
 _SUM_ALERT_FLAG                  = const(0x0040)
-_WARNING_FLAG_CH1                = const(0x0020)
-_WARNING_FLAG_CH2                = const(0x0010)
-_WARNING_FLAG_CH3                = const(0x0008)
+_WARNING_FLAG_CH                 = (None,const(0x0020),const(0x0010),const(0x0008))
 _POWER_ALERT_FLAG                = const(0x0004)
 _TIMING_ALERT_FLAG               = const(0x0002)
 _CONV_READY_FLAG                 = const(0x0001)
@@ -209,12 +193,14 @@ class INA3221:
 
     def is_channel_enabled(self, channel=1):
         """Returns if a given channel is enabled or not"""
-        bit = _ENABLE_CH1 >> (channel-1)
+        #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
+        bit = _ENABLE_CH[channel]
         return self.read(_REG_CONFIG) & bit != 0
 
     def enable_channel(self, channel=1, enable=True):
         """Enables or disable a given channel"""
-        bit = _ENABLE_CH1 >> (channel-1)
+        #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
+        bit = _ENABLE_CH[channel]
         value = 0
         if enable:
             value = bit
@@ -223,7 +209,7 @@ class INA3221:
     def shunt_voltage(self, channel=1):
         """Returns the channel's shunt voltage in Volts"""
         #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
-        value = self._to_signed(self.read(_REG_SHUNT_VOLTAGE_CH1 + channel-1)) / 8.0
+        value = self._to_signed(self.read(_REG_SHUNT_VOLTAGE_CH[channel])) / 8.0
         # convert to volts - LSB = 40uV
         return value * 0.00004
 
@@ -235,6 +221,6 @@ class INA3221:
     def bus_voltage(self, channel=1):
         """Returns the channel's bus voltage in Volts"""
         #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
-        value = self._to_signed(self.read(_REG_BUS_VOLTAGE_CH1 + channel-1)) / 8
+        value = self._to_signed(self.read(_REG_BUS_VOLTAGE_CH[channel])) / 8
         # convert to volts - LSB = 8mV
         return value * 0.008

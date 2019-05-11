@@ -41,8 +41,8 @@ Memory usage (tested with CircuitPython 4.0.0-rc.1 on CircuitPlayground Express)
 
 **Hardware:**
 
-* INA3221 Triple, Low-/High-Side, I2C Out Current/Voltage Monitor. Product page at `TI.com
-<http://www.ti.com/product/INA3221>`_
+* Device: `INA3221 <http://www.ti.com/product/INA3221>`_ Triple, Low-/High-Side, I2C Out
+ Current/Voltage Monitor.
 
 **Software and Dependencies:**
 

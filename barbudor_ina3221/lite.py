@@ -23,7 +23,7 @@
 `barbudor_INA3221` -- lite version
 ====================================================
 
-CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
+CircuitPython driver for the Texas Instruments INA3221 3 channels current sensor.
 
 * Author : Barbudor (Jean-Michel Mercier)
 
@@ -47,7 +47,7 @@ Memory usage (tested with CircuitPython 4.0.0-rc.1 on CircuitPlayground Express)
 **Software and Dependencies:**
 
 * Adafruit CircuitPython firmware (3.1+):  https://github.com/adafruit/circuitpython/releases
-* Adafruit's Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
+* Adafruit Bus Device library: https://github.com/adafruit/Adafruit_CircuitPython_BusDevice
 """
 
 # imports

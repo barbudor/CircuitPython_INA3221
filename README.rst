@@ -19,8 +19,8 @@ Product page at `ti.com <http://www.ti.com/product/INA3221>`_.
 
 2 version are available:
 
-* normal/full		includes all constants for low-level register access + API for alarms
-* lite				only basic API and no constants - use less memory
+* full		includes all constants for low-level register access + API for alarms
+* lite		only basic API and no constants - use less memory
 
 Pick only one depending your needs. On processors with limited amount of memory (SAMD21), the
 lite version is recommended. You may want to use `mpy-cross` to precompile the library to an

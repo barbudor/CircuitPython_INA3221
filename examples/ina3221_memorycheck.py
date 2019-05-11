@@ -3,8 +3,8 @@
 # pylint: disable=unnecessary-semicolon,multiple-statements,wrong-import-position,no-member
 
 import gc
-import board
 import sys
+import board
 
 i2c_bus = board.I2C()
 

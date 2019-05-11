@@ -2,11 +2,32 @@
 
 import time
 import board
-from barbudor_ina3221_lite import INA3221
+import sys
+
+# on small platform, save memory using the 'lite' version
+if 'SAMD21' in sys.platform:
+    from barbudor_ina3221.lite import INA3221
+else:
+    from barbudor_ina3221.full import *
 
 i2c_bus = board.I2C()
 ina3221 = INA3221(i2c_bus)
 
+# change configuration (requires 'full' version of the lib)
+if INA3221.IS_FULL_API:
+    print("full API sample: improve accuracy")
+    # improve accuracy by slower conversion and higher averaging
+    ina3221.update( reg=C_REG_CONFIG,
+                    mask=C_AVERAGING_MASK |
+                         C_VBUS_CONV_TIME_MASK |
+                         C_SHUNT_CONV_TIME_MASK |
+                         C_MODE_MASK,
+                    value=C_AVERAGING_128_SAMPLES |
+                          C_VBUS_CONV_TIME_8MS |
+                          C_SHUNT_CONV_TIME_8MS |
+                          C_MODE_SHUNT_AND_BUS_CONTINOUS )
+
+# enable all 3 channels. You can comment (#) a line to disable one
 ina3221.enable_channel(1)
 ina3221.enable_channel(2)
 ina3221.enable_channel(3)

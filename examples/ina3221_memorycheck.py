@@ -4,12 +4,17 @@
 
 import gc
 import board
+import sys
 
 i2c_bus = board.I2C()
 
 gc.collect(); gc.collect(); gc.collect(); before = gc.mem_free();
 
-from barbudor_ina3221 import INA3221
+# on small platform, save memory using the 'lite' version
+if 'SAMD21' in sys.platform:
+    from barbudor_ina3221.lite import INA3221
+else:
+    from barbudor_ina3221.full import INA3221
 
 gc.collect(); gc.collect(); gc.collect(); after = gc.mem_free();
 

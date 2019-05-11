@@ -36,7 +36,7 @@ Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. **Do not use** ``0
 
 Memory usage (tested with CircuitPython 4.0.0-rc.1 on CircuitPlayground Express):
 
-* from barbudor_ina3221 import INA3221        --> 4080 bytes
+* from barbudor_ina3221 import INA3221        --> 3200 bytes
 * ina3221 = INA3221(i2c_bus)                  -->  112 bytes
 
 **Hardware:**
@@ -144,6 +144,8 @@ _DIE_ID                          = const(0x3220)
 
 class INA3221:
     """Driver class for Texas Instruments INA3221 3 channel current sensor device"""
+
+    IS_FULL_API = False
 
     @staticmethod
     def _to_signed(val):

@@ -20,29 +20,30 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 # THE SOFTWARE.
 """
-`barbudor_INA3221`
-====================================================
+`barbudor_INA3221.full <full>` - Full version library
+=====================================================
 
-CircuitPython driver for the Texas Instruments INA3221 3 channels current sensor.
+CircuitPython driver for the Texas Instruments INA3221 3 channels current sensor
 
-* Author : Barbudor (Jean-Michel Mercier)
+Author : Barbudor (Jean-Michel Mercier)
 
 Implementation Notes
 --------------------
 
-**Important Note:**
 In order to be coherent with the datasheet, the channel index in the below API start at 1.
 Value of ``channel`` parameter must be ``1``, ``2`` or ``3``. **Do not use** ``0``
 
-Memory usage (tested with CircuitPython 4.0.0-rc.1 on CircuitPlayground Express):
+**Memory usage:**
 
-* from barbudor_ina3221 import INA3221        --> 6704 bytes
-* ina3221 = INA3221(i2c_bus)                  -->  112 bytes
+Tested with CircuitPython 4.0.0-rc.1 on CircuitPlayground Express:
+
+* ``from barbudor_ina3221 import INA3221``        => 6704 bytes
+* ``ina3221 = INA3221(i2c_bus)``                  =>  112 bytes
 
 **Hardware:**
 
 * Device: `INA3221 <http://www.ti.com/product/INA3221>`_ Triple, Low-/High-Side, I2C Out
- Current/Voltage Monitor.
+  Current/Voltage Monitor.
 
 **Software and Dependencies:**
 

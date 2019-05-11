@@ -19,12 +19,12 @@ Product page at `ti.com <http://www.ti.com/product/INA3221>`_.
 
 2 version are available:
 
-* full		includes all constants for low-level register access + API for alarms
-* lite		only basic API and no constants - use less memory
+* ``barbudor_ina3221.full``	includes all constants for low-level register access + API for alarms
+* ``barbudor_ina3221.lite``	only basic API and no constants - use less memory
 
 Pick only one depending your needs. On processors with limited amount of memory (SAMD21), the
-lite version is recommended. You may want to use `mpy-cross` to precompile the library to an
-`.mpy` file for lower memory footprint.
+lite version is recommended. You may want to use ``mpy-cross`` to precompile the library to an
+``.mpy`` file for lower memory footprint.
 
 Dependencies
 =============

@@ -5,10 +5,12 @@ import sys
 import board
 
 # on small platform, save memory using the 'lite' version
+# pylint: disable=unused-wildcard-import,wildcard-import
 if 'SAMD21' in sys.platform:
     from barbudor_ina3221.lite import INA3221
 else:
     from barbudor_ina3221.full import *
+# pylint: enable=unused-wildcard-import,wildcard-import
 
 i2c_bus = board.I2C()
 ina3221 = INA3221(i2c_bus)

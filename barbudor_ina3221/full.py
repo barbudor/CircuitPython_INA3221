@@ -23,7 +23,7 @@
 `barbudor_INA3221`
 ====================================================
 
-CircuitPython driver for the Texas Instruments' INA3221 3 channels current sensor.
+CircuitPython driver for the Texas Instruments INA3221 3 channels current sensor.
 
 * Author : Barbudor (Jean-Michel Mercier)
 

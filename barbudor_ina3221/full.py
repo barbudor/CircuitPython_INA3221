@@ -142,6 +142,9 @@ C_REG_DIE_ID                      = const(0xFF)
 C_MANUFACTURER_ID                 = const(0x5449)     # "TI"
 C_DIE_ID                          = const(0x3220)
 
+# General constants
+C_BUS_ADC_LSB                     = const(0.008)      # VBus ADC LSB is 8mV
+C_SHUNT_ADC_LSB                   = const(0.00004)    # VShunt ADC LSB is 40µV
 
 class INA3221:
     """Driver class for Texas Instruments INA3221 3 channel current sensor device"""
@@ -214,7 +217,7 @@ class INA3221:
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_signed(self.read(C_REG_SHUNT_VOLTAGE_CH[channel])) / 8.0
         # convert to volts - LSB = 40uV
-        return value * 0.00004
+        return value * C_SHUNT_ADC_LSB
 
     def current(self, channel=1):
         """Return's the channel current in Amps"""
@@ -226,19 +229,19 @@ class INA3221:
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_signed(self.read(C_REG_BUS_VOLTAGE_CH[channel])) / 8
         # convert to volts - LSB = 8mV
-        return value * 0.008
+        return value * C_BUS_ADC_LSB
 
     def shunt_critical_alert_limit(self, channel=1):
         """Returns the channel's shunt voltage critical alert limit in Volts"""
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_signed(self.read(C_REG_CRITICAL_ALERT_LIMIT_CH[channel])) / 8
         # convert to volts - LSB = 40uV
-        return value * 0.00004
+        return value * C_SHUNT_ADC_LSB
 
     def set_shunt_critical_alert_limit(self, channel, voltage):
         """Sets the channel's shunt voltage critical alert limit in Volts"""
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
-        value = self._to_unsigned(round(voltage * 0.00004) * 8)
+        value = self._to_unsigned(round(voltage * C_SHUNT_ADC_LSB) * 8)
         self.write(C_REG_CRITICAL_ALERT_LIMIT_CH[channel], value)
 
     def shunt_warning_alert_limit(self, channel=1):
@@ -246,10 +249,10 @@ class INA3221:
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_signed(self.read(C_REG_WARNING_ALERT_LIMIT_CH[channel])) / 8
         # convert to volts - LSB = 40uV
-        return value * 0.00004
+        return value * C_SHUNT_ADC_LSB
 
     def set_shunt_warning_alert_limit(self, channel, voltage):
         """Sets the channel's shunt voltage warning alert limit in Volts"""
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
-        value = self._to_unsigned(round(voltage * 0.00004) * 8)
+        value = self._to_unsigned(round(voltage * C_SHUNT_ADC_LSB) * 8)
         self.write(C_REG_WARNING_ALERT_LIMIT_CH[channel], value)

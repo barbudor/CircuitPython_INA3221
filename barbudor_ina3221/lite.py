@@ -142,6 +142,10 @@ _REG_DIE_ID                      = const(0xFF)
 _MANUFACTURER_ID                 = const(0x5449)     # "TI"
 _DIE_ID                          = const(0x3220)
 
+# General constants
+C_BUS_ADC_LSB                    = const(0.008)      # VBus ADC LSB is 8mV
+C_SHUNT_ADC_LSB                  = const(0.00004)    # VShunt ADC LSB is 40µV
+
 
 class INA3221:
     """Driver class for Texas Instruments INA3221 3 channel current sensor device"""
@@ -214,7 +218,7 @@ class INA3221:
         #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_signed(self.read(_REG_SHUNT_VOLTAGE_CH[channel])) / 8.0
         # convert to volts - LSB = 40uV
-        return value * 0.00004
+        return value * C_SHUNT_ADC_LSB
 
     def current(self, channel=1):
         """Return's the channel current in Amps"""
@@ -226,4 +230,4 @@ class INA3221:
         #assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_signed(self.read(_REG_BUS_VOLTAGE_CH[channel])) / 8
         # convert to volts - LSB = 8mV
-        return value * 0.008
+        return value * C_BUS_ADC_LSB

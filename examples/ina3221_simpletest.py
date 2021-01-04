@@ -19,6 +19,8 @@ ina3221 = INA3221(i2c_bus)
 if INA3221.IS_FULL_API:
     print("full API sample: improve accuracy")
     # improve accuracy by slower conversion and higher averaging
+    # each conversion now takes 128*0.008 = 1.024 sec
+    # which means 2 seconds per channel
     ina3221.update(reg=C_REG_CONFIG,
                    mask=C_AVERAGING_MASK |
                    C_VBUS_CONV_TIME_MASK |
@@ -37,6 +39,11 @@ ina3221.enable_channel(3)
 # pylint: disable=bad-whitespace
 
 while True:
+    if INA3221.IS_FULL_API: # is_ready available only in "full" variant
+        while not ina3221.is_ready:
+            print(".",end='')
+            time.sleep(0.1)
+        print("")
 
     print("------------------------------")
     line_title =         "Measurement   "

@@ -143,8 +143,8 @@ _MANUFACTURER_ID                 = const(0x5449)     # "TI"
 _DIE_ID                          = const(0x3220)
 
 # General constants
-C_BUS_ADC_LSB                    = const(0.008)      # VBus ADC LSB is 8mV
-C_SHUNT_ADC_LSB                  = const(0.00004)    # VShunt ADC LSB is 40µV
+C_BUS_ADC_LSB                    = 0.008             # VBus ADC LSB is 8mV
+C_SHUNT_ADC_LSB                  = 0.00004           # VShunt ADC LSB is 40µV
 
 
 class INA3221:

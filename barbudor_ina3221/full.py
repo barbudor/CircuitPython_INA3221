@@ -143,8 +143,9 @@ C_MANUFACTURER_ID                 = const(0x5449)     # "TI"
 C_DIE_ID                          = const(0x3220)
 
 # General constants
-C_BUS_ADC_LSB                     = const(0.008)      # VBus ADC LSB is 8mV
-C_SHUNT_ADC_LSB                   = const(0.00004)    # VShunt ADC LSB is 40µV
+C_BUS_ADC_LSB                     = 0.008             # VBus ADC LSB is 8mV
+C_SHUNT_ADC_LSB                   = 0.00004           # VShunt ADC LSB is 40µV
+
 
 class INA3221:
     """Driver class for Texas Instruments INA3221 3 channel current sensor device"""
@@ -256,3 +257,9 @@ class INA3221:
         assert 1 <= channel <= 3, "channel argument must be 1, 2, or 3"
         value = self._to_unsigned(round(voltage * C_SHUNT_ADC_LSB) * 8)
         self.write(C_REG_WARNING_ALERT_LIMIT_CH[channel], value)
+
+    @property
+    def is_ready(self):
+        """Returns the CVRF (ConVersion Ready Flag) from the mask/enable register """
+        regvalue = self.read(C_REG_MASK_ENABLE)
+        return (regvalue & C_CONV_READY_FLAG) != 0

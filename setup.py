@@ -19,9 +19,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='barbudor-circuitpython-ina3221',
-
-    use_scm_version=True,
-    setup_requires=['setuptools_scm'],
+    version = '1.2.0',
 
     description='CircuitPython library for INA3221 triple channel current sensor.',
     long_description=long_description,
@@ -29,6 +27,7 @@ setup(
 
     # The project's main homepage.
     url='https://github.com/barbudor/CircuitPython_INA3221',
+    download_url='https://github.com/barbudor/CircuitPython_INA3221/archive/1.2.0.tar.gz',
 
     # Author details
     author='Barbudor',
@@ -56,5 +55,5 @@ setup(
 
     # You can just specify the packages manually here if your project is
     # simple. Or you can use find_packages().
-    py_modules=['barbudor_ina3221'],
+    packages=["barbudor_ina3221"],
 )

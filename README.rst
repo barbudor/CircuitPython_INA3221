@@ -37,6 +37,9 @@ Please ensure all dependencies are available on the CircuitPython filesystem.
 This is easily achieved by downloading
 `the Adafruit library and driver bundle <https://github.com/adafruit/Adafruit_CircuitPython_Bundle>`_.
 
+For versions of CircuitPython before v6.0, please use ina3221 library v1.2.0.
+Version 2.0.0 of the lib as been changed to follow the breaking changes in `busdevice.i2c_device`.
+
 Installing from PyPI
 --------------------
 On supported GNU/Linux systems like the Raspberry Pi, you can install the driver locally `from

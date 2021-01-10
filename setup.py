@@ -19,7 +19,7 @@ with open(path.join(here, 'README.rst'), encoding='utf-8') as f:
 
 setup(
     name='barbudor-circuitpython-ina3221',
-    version = '1.2.0',
+    version = '2.0.0',
 
     description='CircuitPython library for INA3221 triple channel current sensor.',
     long_description=long_description,

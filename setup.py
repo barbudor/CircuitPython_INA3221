@@ -27,7 +27,7 @@ setup(
 
     # The project's main homepage.
     url='https://github.com/barbudor/CircuitPython_INA3221',
-    download_url='https://github.com/barbudor/CircuitPython_INA3221/archive/1.2.0.tar.gz',
+    download_url='https://github.com/barbudor/CircuitPython_INA3221/archive/2.0.0.tar.gz',
 
     # Author details
     author='Barbudor',
